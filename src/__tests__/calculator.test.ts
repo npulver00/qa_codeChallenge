@@ -24,4 +24,51 @@ let dataset = [
   { x: 81, y: 227, method: "divide" },
 ];
 
-describe("Calculator", () => {});
+
+describe("Calculator", () => {
+
+  dataset.forEach((value) => {
+      const x = value.x;
+      const y = value.y;
+      const m = value.method;
+    test("which method", () => {
+
+      /* Option 1: We can test using a switch case comparing the methods and in return doing that particular function */
+
+      switch(m){
+        case "add":
+          expect(calculator.add(x,y)).toBe(x + y);
+          break;
+        case "subtract":
+          expect(calculator.subtract(x,y)).toBe(x - y);
+          break;
+        case "multiply":
+          expect(calculator.multiply(x,y)).toBe(x * y);
+          break;
+        case "divide":
+          expect(calculator.divide(x,y)).toBe(x / y);
+          break;   
+           default:
+               null
+               break;
+      };
+
+      /* Option 2: Or we can use a ternary which is less readable   */
+
+      // m === "add" ? expect(calculator.add(x, y)).toBe(x + y) :
+      //   m === "subtract" ? expect(calculator.subtract(x, y)).toBe(x - y) :
+      //     m === "multiply" ? expect(calculator.multiply(x, y)).toBe(x * y) :
+      //       m === "divide" ? expect(calculator.divide(x, y)).toBe(x / y) : null;
+
+
+    /*  Option 3: Or we can use Object literals to pass in the parameters  */
+      // (m) => ({
+      //   "add" : expect(calculator.add(x, y)).toBe(x + y),
+      //   "subract" : expect(calculator.subtract(x, y)).toBe(x - y),
+      //   "multiply" :  expect(calculator.multiply(x, y)).toBe(x * y),
+      //   "divide" : expect(calculator.divide(x, y)).toBe(x / y)
+      // });
+    });
+  });
+
+});
